@@ -17,7 +17,8 @@ class MainActivity : AppCompatActivity() {
     private var tvMinToFromDate : TextView? = null
     private var tvAgeInHours : TextView? = null
     private var tvHoursToFromDate : TextView? = null
-
+    private var tvAgeInDays : TextView? = null
+    private var tvDaysToFromDate : TextView? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -28,6 +29,8 @@ class MainActivity : AppCompatActivity() {
         tvMinToFromDate = findViewById(R.id.minToFromDate)
         tvAgeInHours = findViewById(R.id.textViewAgeInHours)
         tvHoursToFromDate = findViewById(R.id.hoursToFromDate)
+        tvAgeInDays = findViewById(R.id.textViewAgeInDays)
+        tvDaysToFromDate = findViewById(R.id.daysToFromDate)
 
         btnDatePicker.setOnClickListener {
             clickDatePicker()
@@ -62,8 +65,13 @@ class MainActivity : AppCompatActivity() {
                 val selectedDateInHours = theDate.time / 3600000
                 val currentDateInHours =  currentDate.time / 3600000
 
+                // for date to days
+                val selectedDateInDays = theDate.time / 86400000
+                val currentDateInDays =  currentDate.time / 86400000
+
                 var differenceInMinutes : Long = 0
                 var differenceInHours : Long = 0
+                var differenceInDays : Long = 0
 
                 if (currentDateInMinutes < selectedDateInMinutes) {
                     tvMinToFromDate?.text = "in minutes to date"
@@ -71,15 +79,22 @@ class MainActivity : AppCompatActivity() {
 
                     tvHoursToFromDate?.text = "in hours to date"
                     differenceInHours = selectedDateInHours - currentDateInHours
+
+                    tvDaysToFromDate?.text = "in days to date"
+                    differenceInDays = selectedDateInDays - currentDateInDays
                 } else {
                     tvMinToFromDate?.text = "in minutes from date"
                     differenceInMinutes = currentDateInMinutes - selectedDateInMinutes
 
                     tvHoursToFromDate?.text = "in hours from date"
                     differenceInHours = currentDateInHours - selectedDateInHours
+
+                    tvDaysToFromDate?.text = "in days from date"
+                    differenceInDays = currentDateInDays - selectedDateInDays
                 }
                 tvAgeInMinutes?.text = differenceInMinutes.toString()
                 tvAgeInHours?.text = differenceInHours.toString()
+                tvAgeInDays?.text = differenceInDays.toString()
             },
             year,
             month,
