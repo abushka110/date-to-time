@@ -14,6 +14,7 @@ class MainActivity : AppCompatActivity() {
 
     private var tvSelectedDate : TextView? = null
     private var tvAgeInMinutes : TextView? = null
+    private var tvMinToFromDate : TextView? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -21,6 +22,7 @@ class MainActivity : AppCompatActivity() {
         val btnDatePicker = findViewById<Button>(R.id.btnDatePicker)
         tvSelectedDate = findViewById(R.id.textViewSelectedDate)
         tvAgeInMinutes = findViewById(R.id.textViewAgeInMinutes)
+        tvMinToFromDate = findViewById(R.id.minToFromDate)
         btnDatePicker.setOnClickListener {
             clickDatePicker()
         }
@@ -35,7 +37,7 @@ class MainActivity : AppCompatActivity() {
         val dpd = DatePickerDialog(this,
             { _, selectedYear, selectedMonth, selectedDayOfMonth ->
                 Toast.makeText(this,
-                    "Year was $selectedYear, month was ${selectedMonth+1} and day was $selectedDayOfMonth day",
+                    "Year was $selectedYear, month was ${selectedMonth+1} and day was $selectedDayOfMonth",
                     Toast.LENGTH_LONG
                 ).show()
 
